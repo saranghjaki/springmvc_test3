@@ -15,5 +15,17 @@
 				, pilmmName
 			from
 				pilatesMember
-	</select>
+	</select> 
+	
+	<insert id="insert">
+			insert into pilatesMember (
+				pilmmId
+				,pilmmName
+				,pilmmDelNy
+			) values (
+				#{pilmmId}
+				,#{pilmmName}
+				,0
+			)
+	</insert>
 </mapper>

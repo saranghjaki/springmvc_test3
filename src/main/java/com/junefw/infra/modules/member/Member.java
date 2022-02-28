@@ -4,6 +4,7 @@ public class Member {
 	private String pilmmSeq = "";
 	private String pilmmId = "";
 	private String pilmmName= "";
+	private String pilmmDelNy= "";
 	public String getPilmmSeq() {
 		return pilmmSeq;
 	}
@@ -21,6 +22,12 @@ public class Member {
 	}
 	public void setPilmmName(String pilmmName) {
 		this.pilmmName = pilmmName;
+	}
+	public String getPilmmDelNy() {
+		return pilmmDelNy;
+	}
+	public void setPilmmDelNy(String pilmmDelNy) {
+		this.pilmmDelNy = pilmmDelNy;
 	}
 	
 	
