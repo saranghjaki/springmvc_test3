@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.junefw.infra.modules.code.CodeMpp"> <!-- 변경파일지칭 -->
+
+    <resultMap id="resultMapObj" type="com.junefw.infra.modules.code.Code"></resultMap>
+   <!-- 결과객체지정 -->
+	<select id="selectList" resultMap="resultMapObj">
+			SELECT 
+			a.pilcgSeq
+			, a.pilcgName
+		FROM nct.pilatescodegroup a
+		WHERE 1=1
+			AND pilcgDelNy = 0 //쿼리를만들고
+	</select>	
+</mapper>
+
