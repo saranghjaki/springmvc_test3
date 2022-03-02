@@ -1,9 +1,10 @@
 package com.junefw.infra.modules.codeGroup;
 
 public class CodeGroup {
-	private String pilcgSeq = "";
-	private String pilcgName = "";
-	private String pilcgOrder= "";
+
+	private String pilcgSeq;
+	private String pilcgName;
+	private Integer pilcgDelNy;
 	
 	public String getPilcgSeq() {
 		return pilcgSeq;
@@ -17,12 +18,11 @@ public class CodeGroup {
 	public void setPilcgName(String pilcgName) {
 		this.pilcgName = pilcgName;
 	}
-	public String getPilcgOrder() {
-		return pilcgOrder;
+	public Integer getPilcgDelNy() {
+		return pilcgDelNy;
 	}
-	public void setPilcgOrder(String pilcgOrder) {
-		this.pilcgOrder = pilcgOrder;
-	}
+	public void setPilcgDelNy(Integer pilcgDelNy) {
+		this.pilcgDelNy = pilcgDelNy;
 	
-
+	}
 }

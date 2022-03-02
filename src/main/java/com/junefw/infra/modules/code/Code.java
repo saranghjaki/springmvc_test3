@@ -1,11 +1,10 @@
 package com.junefw.infra.modules.code;
 
 public class Code {
-	
-	//DTO
 	private String pilcgSeq;
 	private String pilcgName;
 	private Integer pilcgDelNy;
+	
 	public String getPilcgSeq() {
 		return pilcgSeq;
 	}
@@ -23,8 +22,9 @@ public class Code {
 	}
 	public void setPilcgDelNy(Integer pilcgDelNy) {
 		this.pilcgDelNy = pilcgDelNy;
+	
 	}
 	
-	//부르는 함수
+	
 
 }

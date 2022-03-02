@@ -5,4 +5,6 @@ import java.util.List;
 public interface CodeService {
 
 	public List<Code> selectList() throws Exception; 
-} //함수만선언
+	
+	public int insert(Code dto) throws Exception;
+}

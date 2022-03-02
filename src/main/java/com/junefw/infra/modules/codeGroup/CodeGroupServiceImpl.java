@@ -13,5 +13,7 @@ public class CodeGroupServiceImpl implements CodeGroupService{
 	
 	@Override
 	public List<CodeGroup> selectList() throws Exception { return dao.selectList(); }
+
+
 	
 }

@@ -17,5 +17,17 @@
 		WHERE 1=1
 			AND pilcgDelNy = 0 
 	</select>	
+	
+		<insert id="insert">
+			INSERT into pilatesCodeGroup (
+				
+			, pilcgName
+			,pilcgDelNy
+			) values (
+				#{pilcgName}
+				,0
+			)
+	</insert>
+
 </mapper>
 
