@@ -12,9 +12,10 @@
 			SELECT 
 			a.pilcgSeq
 			, a.pilcgName
+			,a.pilcgDelNy
 		FROM nct.pilatescodegroup a
 		WHERE 1=1
-			AND pilcgDelNy = 0 //쿼리를만들고
+			AND pilcgDelNy = 0 
 	</select>	
 </mapper>
 

@@ -16,7 +16,7 @@ public class CodeController {
 	@Autowired //서비스 임플부름
 	CodeServiceImpl service;
 	
-	@RequestMapping(value = "/code/codeGroupList")
+	@RequestMapping(value = "/codeGroupList")
 	public String codeGroupList(Model model) throws Exception {
 
 		List<Code> list = service.selectList();
