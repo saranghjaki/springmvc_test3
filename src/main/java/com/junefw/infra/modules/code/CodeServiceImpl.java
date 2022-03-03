@@ -25,6 +25,12 @@ public class CodeServiceImpl implements CodeService{
 		
 	}
 
+	@Override
+		public Code selectOne(CodeVo vo) throws Exception
+		{ return dao.selectOne(vo);
+		}
+		
+	
 	
 }
 

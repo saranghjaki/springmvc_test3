@@ -28,6 +28,16 @@
 				,0
 			)
 	</insert>
+		<select id="selectOne" resultMap="resultMapObj">
+			SELECT 
+			a.pilcgSeq
+			, a.pilcgName
+			,a.pilcgDelNy
+		FROM nct.pilatescodegroup a
+		WHERE 1=1
+			AND pilcgDelNy = 0 
+			AND pilcgDelNy = #item{pilcgSeq}
+	</select>
 
 </mapper>
 
