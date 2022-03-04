@@ -5,9 +5,9 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.junefw.infra.modules.codeGroup.CodeGroupMpp">
-
+  <!-- SqlSession을 이용해서 직접 호출하는거 -->
     <resultMap id="resultMapObj" type="com.junefw.infra.modules.codeGroup.CodeGroup"></resultMap>
-
+    <!-- 복잡한 결과 매핑을 간편하게 만들어주기위한 매핑 -->
 	<select id="selectList" resultMap="resultMapObj">
 			select
 				pilcgSeq
@@ -19,6 +19,7 @@
 	
 			
 			
-		
+ 		
 </mapper>
 
+ 

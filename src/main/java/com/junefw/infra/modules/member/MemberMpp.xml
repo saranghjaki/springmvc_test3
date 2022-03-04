@@ -28,4 +28,15 @@
 				,0
 			)
 	</insert>
+	<select id="selectOne" resultMap="resultMapObj">
+			SELECT 
+			a.pilmmSeq
+			,a.pilmmId
+			, a.pilmmName
+			,a.pilmmDob
+		FROM nct.pilatesmember a
+		WHERE 1=1
+			AND pilmmSeq = #{pilmmSeq}
+	</select>
+	
 </mapper>

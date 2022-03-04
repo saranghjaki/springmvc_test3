@@ -14,7 +14,10 @@
 	<c:otherwise>
 		<c:forEach items="${list}" var="item" varStatus="status">	
 		
-		<c:out value="${item.pilmmSeq}"/> | <c:out value="${item.pilmmId}"/> | <c:out value="${item.pilmmName}"/> <br>
+		<c:out value="${item.pilmmSeq}"/> 
+		<a href="/infra/member/memberView?pilmmSeq=<c:out value="${item.pilmmSeq}"/>">
+		<c:out value="${item.pilmmName}"/></a>
+		| <c:out value="${item.pilmmId}"/> <br>
 	
 		</c:forEach>
 	</c:otherwise>

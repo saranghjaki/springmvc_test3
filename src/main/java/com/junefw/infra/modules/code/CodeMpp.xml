@@ -21,7 +21,7 @@
 		<insert id="insert">
 			INSERT into pilatesCodeGroup (
 				
-			, pilcgName
+			pilcgName
 			,pilcgDelNy
 			) values (
 				#{pilcgName}
@@ -35,8 +35,7 @@
 			,a.pilcgDelNy
 		FROM nct.pilatescodegroup a
 		WHERE 1=1
-			AND pilcgDelNy = 0 
-			AND pilcgDelNy = #item{pilcgSeq}
+			AND pilcgSeq = #{pilcgSeq}
 	</select>
 
 </mapper>

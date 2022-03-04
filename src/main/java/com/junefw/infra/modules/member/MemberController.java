@@ -7,6 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.junefw.infra.modules.code.Code;
+import com.junefw.infra.modules.code.CodeVo;
+
 @Controller
 public class MemberController {
 
@@ -43,6 +46,21 @@ public class MemberController {
 		/* System.out.println("result: " + result); */
 
 		return "";
+	}
+	
+	@RequestMapping(value = "/member/memberView") 
+	public String cmemberView(MemberVo vo, Model model ) throws Exception {
+		
+		System.out.println("vo.getPilmmSeq("+vo.getPilmmSeq()+")");
+	
+		//디비까지 가서 한건의 데이터 값을 가지고온다.
+		Member rt = service.selectOne(vo);
+		
+		//가지고 온값을 jsp로 넘겨준다
+		model.addAttribute("rt",rt);
+		
+		
+		return "member/memberView";
 	}
 	
 }

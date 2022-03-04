@@ -1,6 +1,7 @@
 package com.junefw.infra.modules.code;
 
 public class CodeVo {
+	
 	private String pilcgSeq;
 		
 	public String getPilcgSeq() {
