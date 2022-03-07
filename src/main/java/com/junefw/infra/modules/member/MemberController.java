@@ -53,10 +53,8 @@ public class MemberController {
 		
 		System.out.println("vo.getPilmmSeq("+vo.getPilmmSeq()+")");
 	
-		//디비까지 가서 한건의 데이터 값을 가지고온다.
 		Member rt = service.selectOne(vo);
 		
-		//가지고 온값을 jsp로 넘겨준다
 		model.addAttribute("rt",rt);
 		
 		

@@ -6,10 +6,10 @@
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
 
 
-<form method="post" action="/infra/code/codeGroupInst"> 
+<form method="post" action="/infra/code/codeGroupUpdt"> 
 
-	
-	<input type="text" name="pilcgName" placeholder="이름">
+	<input type="hidden" name="pilcgSeq" value="<c:out value="${item.pilcgSeq}"/>">
+	<input type="text" name="pilcgName" placeholder="이름" value="<c:out value="${item.pilcgName}"/>">
 	<input type="submit" value="제출">
 	
 </form>

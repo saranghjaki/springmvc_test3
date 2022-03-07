@@ -21,7 +21,7 @@ public class CodeServiceImpl implements CodeService{
 	@Override
 	public int insert(Code dto) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.insert();
+		return dao.insert(dto);
 		
 	}
 
@@ -30,6 +30,12 @@ public class CodeServiceImpl implements CodeService{
 		
 		return dao.selectOne(vo);
 		
+		}
+
+	@Override
+	public int update(Code dto) throws Exception {
+		
+		return dao.update(dto);	
 		}
 		
 	

@@ -55,7 +55,25 @@ public class CodeController {
 		
 		return "code/codeGroupView";
 	}
-	
+	@RequestMapping(value = "/code/codeGroupForm2") 
+	public String codeGroupForm2(CodeVo vo, Model model ) throws Exception {
+		
+		Code rt = service.selectOne(vo);
+	//수정폼이 보여지는주소
+		model.addAttribute("rt",rt);
+		
+		return "code/codeGroupForm2";
+
+	}
+	@RequestMapping(value = "/code/codeGroupUpdt") 
+	public String codeGroupUpdt(Code dto) throws Exception {
+		System.out.println("dto.getPilcgSeq("+dto.getPilcgSeq()+")");
+		System.out.println("dto.getPilcgSeq("+dto.getPilcgName()+")");
+		service.update(dto);
+		
+		return "";
+	}
 }
+
 
 

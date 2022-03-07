@@ -9,3 +9,6 @@
 <c:out value="${rt.pilcgSeq}"/> 
 <c:out value="${rt.pilcgName}"/>
 <c:out value="${rt.pilcgDelNy}"/> 
+<!-- <a href ="../infra/code/codeGroupForm">수정</a> -->
+
+<a href="/infra/code/codeGroupForm2?pilcgName=<c:out value="${rt.pilcgName}"/>">수정</a>
