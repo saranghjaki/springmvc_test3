@@ -8,8 +8,8 @@
 
 <form method="post" action="/infra/code/codeGroupUpdt"> 
 
-	<input type="hidden" name="pilcgSeq" value="<c:out value="${item.pilcgSeq}"/>">
-	<input type="text" name="pilcgName" placeholder="이름" value="<c:out value="${item.pilcgName}"/>">
+	<input type="hidden" name="pilcgSeq" value="<c:out value="${rt.pilcgSeq}"/>">
+	<input type="text" name="pilcgName" placeholder="이름" value="<c:out value="${rt.pilcgName}"/>">
 	<input type="submit" value="제출">
 	
 </form>
