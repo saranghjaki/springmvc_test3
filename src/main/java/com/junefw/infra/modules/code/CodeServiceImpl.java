@@ -37,6 +37,32 @@ public class CodeServiceImpl implements CodeService{
 		
 		return dao.update(dto);	
 		}
+	
+		/* CODE S */
+
+	@Override
+	public List<Code> selectList1() throws Exception {
+		// TODO Auto-generated method stub
+		return dao.selectList1();
+	}
+
+	@Override
+	public int insert1(Code dto) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.insert1(dto);
+	}
+
+	@Override
+	public Code selectOne1(CodeVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.selectOne1(vo);
+	}
+
+	@Override
+	public int update1(Code dto) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.update1(dto);	
+	}
 		
 	
 	

@@ -49,7 +49,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/member/memberView") 
-	public String cmemberView(MemberVo vo, Model model ) throws Exception {
+	public String memberView(MemberVo vo, Model model ) throws Exception {
 		
 		System.out.println("vo.getPilmmSeq("+vo.getPilmmSeq()+")");
 	

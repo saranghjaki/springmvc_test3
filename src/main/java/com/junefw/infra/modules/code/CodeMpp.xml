@@ -39,9 +39,6 @@
 			AND pilcgSeq= #{pilcgSeq}
 	</select>
 	
-
-
-	
 	<update id="update">
 			UPDATE
 				pilatesCodeGroup
@@ -50,6 +47,50 @@
 			WHERE 1=1
 				AND  pilcgSeq = #{pilcgSeq}
 	</update>
+	
+	
+	<!-- code s -->
+		<!-- code list -->
+ 		<select id="selectList1" resultMap="resultMapObj">
+			SELECT 
+			a.pilcdSeq
+			, a.pilcdName
+			,a.pilcdDelNy
+		FROM nct.pilatesCode a
+		WHERE 1=1
+			AND pilcdDelNy = 0 
+	</select>	
+		<insert id="insert1">
+			INSERT into pilatesCode(
+			
+			pilcdName
+			,pilcdDelNy
+			) values (
+			,
+			#{pilcdName}
+			,0
+			)
+	</insert>
+	
+	<select id="selectOne1" resultMap="resultMapObj">
+			SELECT 
+			pilcdSeq
+			,pilcdName
+			,pilcdDelNy
+		FROM nct.pilatesCode
+		WHERE 1=1
+			AND pilcdSeq= #{pilcdSeq}
+	</select>
+	
+	<update id="update1">
+			UPDATE
+				pilatesCode
+			SET 
+				pilcdName = #{pilcdName}
+			WHERE 1=1
+				AND  pilcdSeq = #{pilcdSeq}
+	</update>
+	
 
 </mapper>
 
