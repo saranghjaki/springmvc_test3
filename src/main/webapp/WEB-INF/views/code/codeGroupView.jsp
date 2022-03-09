@@ -6,9 +6,9 @@
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
 
 
-<c:out value="${rt.pilcgSeq}"/> 
-<c:out value="${rt.pilcgName}"/>
-<c:out value="${rt.pilcgDelNy}"/> 
+<c:out value="${item.pilcgSeq}"/> 
+<c:out value="${item.pilcgName}"/>
+<c:out value="${item.pilcgDelNy}"/> 
 <!-- <a href ="../infra/code/codeGroupForm">수정</a> -->
 
-<a href="/infra/code/codeGroupForm2?pilcgSeq=<c:out value="${rt.pilcgSeq}"/>">수정</a>
+<a href="/infra/code/codeGroupForm2?pilcgSeq=<c:out value="${item.pilcgSeq}"/>">수정</a>

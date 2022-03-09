@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.junefw.infra.modules.program.ProgramMpp"> <!-- 변경파일지칭 -->
+
+    <resultMap id="resultMapObj" type="com.junefw.infra.modules.program.Program"></resultMap>
+   <!-- 결과객체지정 -->
+	<select id="selectListProgram" resultMap="resultMapObj">
+		SELECT
+		pilpgSeq
+		,pilpgName
+		,pilpgTypeCd
+		,pilpgTimeCd
+		,pilpgNumberCd
+		,pilpgPrice
+		,pilpgDelNy
+		FROM NCT.PILATESPROGRAM 
+				WHERE 1=1
+			AND pilpgDelNy = 0 
+	</select>	
+	
+		 <insert id="insert">
+			INSERT into NCT.PILATESPROGRAM (
+			pilpgName
+			,pilpgTypeCd
+			,pilpgTimeCd
+			,pilpgNumberCd
+			,pilpgPrice
+			,pilpgDelNy
+			) values (
+			#{pilpgName}
+			,#{pilpgTypeCd}
+			,#{pilpgTimeCd}
+			,#{pilpgNumberCd}
+			,#{pilpgPrice}
+			,0
+			)
+	</insert>
+	
+ 	<select id="selectOne" resultMap="resultMapObj">
+			SELECT 
+			pilpgSeq
+			,pilpgName
+			,pilpgTypeCd
+			,pilpgTimeCd
+			,pilpgNumberCd
+			,pilpgPrice
+			,pilpgDelNy
+			FROM NCT.PILATESPROGRAM 
+			  WHERE 1=1
+	    	   AND  pilpgSeq= #{pilpgSeq}
+			
+			
+					
+	</select> 
+	
+ 	<update id="update">
+			UPDATE
+				 NCT.PILATESPROGRAM 
+			SET 
+				pilpgName = #{pilpgName}
+				pilpgTypeCd = #{pilpgTypeCd}
+			WHERE 1=1
+				AND  pilpgSeq= #{pilpgSeq}
+	</update> 
+	
+	
+ <!-- code s -->
+		<!-- code list
+ 		<select id="selectList1" resultMap="resultMapObj">
+			SELECT 
+			a.pilcdSeq
+			, a.pilcdName
+			,a.pilcdDelNy
+			,pilcgSeq
+		FROM nct.pilatesCode a
+		
+		WHERE 1=1
+			AND pilcdDelNy = 0 
+	</select>	
+		<insert id="insert1">
+			INSERT into pilatesCode(
+		
+			pilcdName
+			,pilcdDelNy
+			,pilcgSeq
+			) values (
+			#{pilcdName}
+			,0
+			,#{pilcgSeq}
+			)
+	</insert>
+	
+	<select id="selectOne1" resultMap="resultMapObj">
+			SELECT 
+			pilcdSeq
+			,pilcdName
+			,pilcdDelNy
+			,pilcgSeq
+			FROM nct.pilatesCode
+		WHERE 1=1
+			AND pilcdSeq= #{pilcdSeq}
+	</select>
+	
+	<update id="update1">
+			UPDATE
+				pilatesCode
+			SET 
+				pilcdName = #{pilcdName}
+			WHERE 1=1
+				AND  pilcdSeq = #{pilcdSeq}
+	</update> -->
+	
+</mapper>
+

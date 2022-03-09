@@ -13,14 +13,13 @@
 			a.pilcgSeq
 			, a.pilcgName
 			,a.pilcgDelNy
-		FROM nct.pilatesCodeGroup a
-		WHERE 1=1
+				FROM nct.pilatesCodeGroup a
+				WHERE 1=1
 			AND pilcgDelNy = 0 
 	</select>	
 	
 		<insert id="insert">
 			INSERT into pilatesCodeGroup(
-				
 			pilcgName
 			,pilcgDelNy
 			) values (
@@ -56,19 +55,22 @@
 			a.pilcdSeq
 			, a.pilcdName
 			,a.pilcdDelNy
+			,pilcgSeq
 		FROM nct.pilatesCode a
+		
 		WHERE 1=1
 			AND pilcdDelNy = 0 
 	</select>	
 		<insert id="insert1">
 			INSERT into pilatesCode(
-			
+		
 			pilcdName
 			,pilcdDelNy
+			,pilcgSeq
 			) values (
-			,
 			#{pilcdName}
 			,0
+			,#{pilcgSeq}
 			)
 	</insert>
 	
@@ -77,7 +79,8 @@
 			pilcdSeq
 			,pilcdName
 			,pilcdDelNy
-		FROM nct.pilatesCode
+			,pilcgSeq
+			FROM nct.pilatesCode
 		WHERE 1=1
 			AND pilcdSeq= #{pilcdSeq}
 	</select>

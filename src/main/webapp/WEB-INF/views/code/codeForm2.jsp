@@ -8,8 +8,8 @@
 
 <form method="post" action="/infra/code/codeUpdt"> 
 
-	<input type="hidden" name="pilcdSeq" value="<c:out value="${rt.pilcdSeq}"/>">
-	<input type="text" name="pilcdName" placeholder="이름" value="<c:out value="${rt.pilcdName}"/>">
+	<input type="hidden" name="pilcdSeq" value="<c:out value="${item.pilcdSeq}"/>">
+	<input type="text" name="pilcdName" placeholder="코드" value="<c:out value="${item.pilcdName}"/>">
 	<input type="submit" value="제출">
 	
 </form>
