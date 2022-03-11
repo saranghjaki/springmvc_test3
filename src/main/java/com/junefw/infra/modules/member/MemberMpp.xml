@@ -13,30 +13,53 @@
 				pilmmSeq
 				,pilmmId
 				, pilmmName
+				,pilmmDob
 			from
 				pilatesMember
+						WHERE 1=1
+							<choose>
+					<when test="shPilmmDelNy==1">AND pilmmDelNy=1</when>
+					<when test="shPilmmDelNy==0">AND pilmmDelNy=0</when>
+				</choose>
+			<if test="shPilmmName != null and !shPilmmName.equals('')"> 
+			 AND PilmmName LIKE concat('%',#{shPilmmName},'%')
+			 </if> 
 	</select> 
 	
 	<insert id="insert">
 			insert into pilatesMember (
-				pilmmId
-				,pilmmName
+				
+				pilmmName
+				,pilmmId
 				,pilmmDelNy
 			) values (
-				#{pilmmId}
-				,#{pilmmName}
+				
+				#{pilmmName}
+				,#{pilmmId}
 				,0
 			)
 	</insert>
 	<select id="selectOne" resultMap="resultMapObj">
 			SELECT 
-			a.pilmmSeq
-			,a.pilmmId
+			pilmmSeq
 			, a.pilmmName
 			,a.pilmmDob
+			
 		FROM nct.pilatesmember a
 		WHERE 1=1
 			AND pilmmSeq = #{pilmmSeq}
 	</select>
+	
+	
+	
+	<update id="update">
+			UPDATE
+				PILATESMEMBER 
+			SET 
+				pilmmName = #{pilmmName}
+			WHERE 1=1
+				AND  pilmmSeq = #{pilmmSeq}
+	</update> 
+	
 	
 </mapper>

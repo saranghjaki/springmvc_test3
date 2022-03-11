@@ -17,14 +17,14 @@ public class CodeDao {
 	
 	private static String namespace = "com.junefw.infra.modules.code.CodeMpp";
 
-	public List<Code> selectList(){	return sqlSession.selectList(namespace + ".selectList", ""); }
+	public List<Code> selectList(CodeVo vo){return sqlSession.selectList(namespace + ".selectList", vo); }
 	public int insert(Code dto){return sqlSession.insert(namespace + ".insert",dto);} //갯수를의미
 	public Code selectOne(CodeVo vo) { return sqlSession.selectOne(namespace + ".selectOne", vo);}
 	public int update(Code dto){return sqlSession.update(namespace + ".update", dto);}
 
 	/* code s */
 	
-	public List<Code> selectList1(){return sqlSession.selectList(namespace + ".selectList1", ""); }
+	public List<Code> selectList1(CodeVo vo){return sqlSession.selectList(namespace + ".selectList1", vo); }
 	public int insert1(Code dto){return sqlSession.insert(namespace + ".insert1",dto);}
 	public Code selectOne1(CodeVo vo) { return sqlSession.selectOne(namespace + ".selectOne1", vo);}
 	public int update1(Code dto){return sqlSession.update(namespace + ".update1", dto);}

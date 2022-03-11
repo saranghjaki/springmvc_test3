@@ -19,22 +19,31 @@ public class CodeController {
 	CodeServiceImpl service;
 
 	@RequestMapping(value = "/code/codeGroupList")
-	public String codeGroupList(Model model) throws Exception {
+	public String codeGroupList(CodeVo vo, Model model) throws Exception {
+		
 		// 호출한 서비스 결과를 리스트에 담는다
-		List<Code> list = service.selectList();
+		
+		List<Code> list = service.selectList(vo);
+		
 		// 리스트타입을 리스트에 담는다
+		
 		model.addAttribute("list", list);
+		
 		return "code/codeGroupList";
 	}
 
 	@RequestMapping(value = "/code/codeGroupForm")
-	public String codeGroupForm(Model model) throws Exception {
+	public String codeGroupForm(CodeVo vo,Model model) throws Exception {
+		
+		
 		return "code/codeGroupForm";
 	}
 	@RequestMapping(value = "/code/codeGroupInst")
 	public String codeGroupInst(Code dto) throws Exception {
+		
 		service.insert(dto);
-		return "";
+		
+		return "redirect:/code/codeGroupList";
 	}
 
 	@RequestMapping(value = "/code/codeGroupView")
@@ -63,23 +72,27 @@ public class CodeController {
 		System.out.println("dto.getPilcgSeq(" + dto.getPilcgSeq() + ")");
 		System.out.println("dto.getPilcgSeq(" + dto.getPilcgName() + ")");
 		service.update(dto);
-		return "";
+		return "redirect:/code/codeGroupView?PilcgSeq="+dto.getPilcgSeq();
 	}
 
 	/* Code s */
 	
 	  @RequestMapping(value = "/code/codeList")
-	  public String codeList(Model model) throws Exception { //호출한 서비스 결과를 리스트에 담는다
-	  List<Code> list = service.selectList1(); //리스트타입을 리스트에 담는다
+	  public String codeList(CodeVo vo,Model model) throws Exception { //호출한 서비스 결과를 리스트에 담는다
+	  List<Code> list = service.selectList1(vo); //리스트타입을 리스트에 담는다
 	  model.addAttribute("list", list);
+	  
+	  List<Code> listCodeGroup = service.selectList1(vo);
+	  model.addAttribute("listCodeGroup", listCodeGroup);
+	  
 	  return "code/codeList"; 
 	  }
 	  
 	  @RequestMapping(value = "/code/codeForm")
 	  public String codeForm(Model model)
 	  throws Exception {
-		  List<Code> list = service.selectList(); //리스트타입을 리스트에 담는다
-		model.addAttribute("list", list);
+	//	 List<Code> list = service.selectList1(); //리스트타입을 리스트에 담는다
+	//model.addAttribute("list", list);
 	  return "code/codeForm"; 
 	  
 	  }
@@ -94,7 +107,7 @@ public class CodeController {
 	  
 	  @RequestMapping(value = "/code/codeView") 
 	  public String codeView(CodeVo vo, Model model )throws Exception {
-	  List<Code> list = service.selectList(); //리스트타입을 리스트에 담는다
+	  List<Code> list = service.selectList1(vo); //리스트타입을 리스트에 담는다
 	 model.addAttribute("list", list);
 	 
 	  Code rt = service.selectOne1(vo);
@@ -116,5 +129,7 @@ public class CodeController {
 	 	  service.update1(dto);
 	  
 	  return ""; }
+	  
+	  
 	 
 }

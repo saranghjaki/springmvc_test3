@@ -5,6 +5,16 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
 
+<form id="" name="" method="get" action="/infra/member/memberList">
+<select name="shPilmmDelNy">
+	<option value="">::삭제여부::
+	<option value="1">::Y::
+	<option value="0">::N::</option>
+</select>
+	회원이름: <input type="text" name="shPilmmName">
+ <input type="submit" name="search">
+ <br>
+
 <c:choose>
 	<c:when test="${fn:length(list) eq 0}">
 		<tr>
@@ -22,3 +32,4 @@
 		</c:forEach>
 	</c:otherwise>
 </c:choose>	 
+</form>

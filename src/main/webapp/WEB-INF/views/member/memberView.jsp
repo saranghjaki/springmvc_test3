@@ -5,17 +5,11 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
 
-<table border="1" height="200px" >
-	<tr>
-		<th>순서</th>
-		<th>아이디</th>
-		<th>이름</th>
-		<th>생년월일</th>
-		
-	</tr>
-		<td><c:out value="${rt.pilmmSeq}"/> </td>
-		<td><c:out value="${rt.pilmmId}"/></td>
-		<td><c:out value="${rt.pilmmName}"/></td>
-		<td><c:out value="${rt.pilmmDob}"/></td>
 
-</table>
+
+		<c:out value="${item.pilmmSeq}"/> 
+		<c:out value="${item.pilmmId}"/>
+		<c:out value="${item.pilmmName}"/>
+		
+<a href="/infra/member/memberForm2?pilmmSeq=<c:out value="${item.pilmmSeq}"/>">수정</a>
+<a href="/infra/member/memberForm?pilmmSeq=<c:out value="${item.pilmmSeq}"/>">등록</a>

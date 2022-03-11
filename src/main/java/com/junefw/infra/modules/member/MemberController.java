@@ -18,11 +18,10 @@ public class MemberController {
 	
 	@RequestMapping(value = "/member/memberList")
 //	public String memberList(@ModelAttribute("vo") MemberVo vo, Model model) throws Exception {
-	public String memberList(Model model) throws Exception {
+	public String memberList(MemberVo vo,Model model) throws Exception {
 		
-		List<Member> list = service.selectList();
-		model.addAttribute("list", list); //jsp 함수로 넘겨줌
-			//list데이터들이 아래에 리턴 (담겨짐)
+		List<Member> list = service.selectList(vo);
+		model.addAttribute("list", list);  
 		return "member/memberList";
 	}
 	
@@ -35,17 +34,10 @@ public class MemberController {
 	@RequestMapping(value = "/member/memberInst") 
 	public String memberInst(Model model, Member dto) throws Exception {
 		
-		/*
-		 * System.out.println("dto.getpilmmId(): " + dto.getPilmmId());
-		 * System.out.println("dto.getpilmmName(): " + dto.getPilmmName());
-		 */
-
-		// 입력을 작동시킨다.
-		/* int result = */ service.insert(dto);
+		 service.insert(dto);
 		
-		/* System.out.println("result: " + result); */
-
-		return "";
+		
+		return "redirect:/member/memberList";
 	}
 	
 	@RequestMapping(value = "/member/memberView") 
@@ -55,12 +47,26 @@ public class MemberController {
 	
 		Member rt = service.selectOne(vo);
 		
-		model.addAttribute("rt",rt);
+		model.addAttribute("item",rt);
 		
 		
 		return "member/memberView";
 	}
-	
+	@RequestMapping(value = "/member/memberForm2")
+	public String memberForm2(MemberVo vo, Model model) throws Exception {
+		//
+		Member rt = service.selectOne(vo);
+		model.addAttribute("item", rt);
+		return "member/memberForm2";
+
+	}
+
+	@RequestMapping(value = "/member/memberUpdt")
+	public String memberUpdt(Member dto) throws Exception {
+		
+		service.update(dto);
+		return "redirect:/member/memberView?PilmmSeq="+dto.getPilmmSeq();
+	}
 }
 
 

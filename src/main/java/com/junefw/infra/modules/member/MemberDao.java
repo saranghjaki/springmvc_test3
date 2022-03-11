@@ -7,6 +7,9 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.junefw.infra.modules.code.Code;
+import com.junefw.infra.modules.code.CodeVo;
+
 @Repository
 public class MemberDao {
 
@@ -16,11 +19,9 @@ public class MemberDao {
 	
 	private static String namespace = "com.junefw.infra.modules.member.MemberMpp";
 
-	public List<Member> selectList(){ return sqlSession.selectList(namespace + ".selectList", ""); }
+	public List<Member> selectList(MemberVo vo){ return sqlSession.selectList(namespace + ".selectList", vo); }
+	public int insert(Member dto){ 	return sqlSession.insert(namespace + ".insert", dto);}
+	public Member selectOne(MemberVo vo) { return sqlSession.selectOne(namespace + ".selectOne", vo);}
+	public int update(Member dto){return sqlSession.update(namespace + ".update", dto);}
 
-	public int insert(Member dto){ 
-		return sqlSession.insert(namespace + ".insert", dto);
-	}
-	public Member selectOne(MemberVo vo) 
-	{ return sqlSession.selectOne(namespace + ".selectOne", vo);}
 }

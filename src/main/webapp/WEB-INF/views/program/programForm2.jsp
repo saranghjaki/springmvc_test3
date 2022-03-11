@@ -10,7 +10,7 @@
 
 	<input type="hidden" name="pilpgSeq" value="<c:out value="${item.pilpgSeq}"/>">
 	<input type="text" name="pilpgName" placeholder="코드" value="<c:out value="${item.pilpgName}"/>">
-	<input type="text" name="pilpgTypeCd" placeholder="코드" value="<c:out value="${item.pilpgTypeCd}"/>">
+	<
 	<input type="submit" value="제출">
 	
 </form>

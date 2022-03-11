@@ -1,10 +1,13 @@
 package com.junefw.infra.modules.member;
 
+import com.junefw.infra.modules.member.Member;
+
 public class Member {
 	private String pilmmSeq = "";
 	private String pilmmId = "";
 	private String pilmmName= "";
 	private String pilmmDob= "";
+	
 	public String getPilmmSeq() {
 		return pilmmSeq;
 	}
@@ -29,6 +32,10 @@ public class Member {
 	public void setPilmmDob(String pilmmDob) {
 		this.pilmmDob = pilmmDob;
 	}
+
+	
+
+
 	
 	
 	

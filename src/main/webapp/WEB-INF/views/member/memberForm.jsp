@@ -7,9 +7,12 @@
 
 
 <form method="post" action="/infra/member/memberInst"> 
-<!-- 이주소를 호출 컨트로롤러 이주소에 해당되는 걸 찾음 --> 
-	<input type="text" name="pilmmId" placeholder="아이디">
+
+
+
+	
 	<input type="text" name="pilmmName" placeholder="이름">
+	<input type="text" name="pilmmID" placeholder="이름">
 	<input type="submit" value="제출">
 	
 </form>

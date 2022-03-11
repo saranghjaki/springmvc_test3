@@ -13,8 +13,8 @@ public class CodeServiceImpl implements CodeService{
 	CodeDao dao;
 
 	@Override
-	public List<Code> selectList() throws Exception {
-		return dao.selectList(); 
+	public List<Code> selectList(CodeVo vo) throws Exception {
+		return dao.selectList(vo); 
 	}
 	@Override
 	public int insert(Code dto) throws Exception {
@@ -36,9 +36,9 @@ public class CodeServiceImpl implements CodeService{
 		/* CODE S */
 
 	@Override
-	public List<Code> selectList1() throws Exception {
+	public List<Code> selectList1(CodeVo vo) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.selectList1();
+		return dao.selectList1(vo);
 	}
 
 	@Override
