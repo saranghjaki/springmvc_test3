@@ -10,10 +10,10 @@ public interface CodeService {
 	public int update(Code dto) throws Exception;
 	
 	/* CODE S */
-	public List<Code> selectList1(CodeVo vo) throws Exception; 
-	public int insert1(Code dto) throws Exception;
-	public Code selectOne1(CodeVo vo) throws Exception;
-	public int update1(Code dto) throws Exception;
+	public List<Code> selectListCode(CodeVo vo) throws Exception; 
+	public int insertCode(Code dto) throws Exception;
+	public Code selectOneCode(CodeVo vo) throws Exception;
+	public int updateCode(Code dto) throws Exception;
 	
 	
 }

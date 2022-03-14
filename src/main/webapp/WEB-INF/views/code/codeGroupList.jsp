@@ -13,6 +13,13 @@
 </select>
 
 회원이름: <input type="text" name="shPilcgName">
+
+<select name="shOption">
+	<option value="">::검색구분::
+	<option value="1">::한글::
+	<option value="2">::영문::
+</select>
+회원이름: <input type="text" name="shValue">
  <input type="submit" name="search">
  <br>
 <c:choose>
@@ -26,7 +33,7 @@
 		
 		<c:out value="${item.pilcgSeq}"/> |
 		 <a href="/infra/code/codeGroupView?pilcgSeq=<c:out value="${item.pilcgSeq}"/>">
-		<c:out value="${item.pilcgName}"/></a>
+		<c:out value="${item.pilcgName}"/></a> <c:out value="${item.pilcgNameEng}"/>
 		| <c:out value="${item.pilcgDelNy}"/> <br>
 		
 		</c:forEach>

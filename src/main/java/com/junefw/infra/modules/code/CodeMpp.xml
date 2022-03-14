@@ -8,102 +8,108 @@
 
     <resultMap id="resultMapObj" type="com.junefw.infra.modules.code.Code"></resultMap>
    <!-- 결과객체지정 -->
+	<!-- infrCodeGroup -->
+
 	<select id="selectList" resultMap="resultMapObj">
-		SELECT 
+		SELECT
 			a.pilcgSeq
 			,a.pilcgName
 			,a.pilcgDelNy
-				FROM nct.pilatesCodeGroup a
-			WHERE 1=1
-				<choose>
-					<when test="shPilcgDelNy==1">AND pilcgDelNy=1</when>
-					<when test="shPilcgDelNy==0">AND pilcgDelNy=0</when>
-				</choose>
-			<if test="shPilcgName != null and !shPilcgName.equals('')"> 
-			 AND pilcgName LIKE CONCAT('%',#{shPilcgName},'%')</if> 
-				<!-- <if test="shPilcgSeq != null and !shPilcgSeq.equals('')"> 
-			 AND pilcgSeq = #{shPilcgSeq}</if> 
- -->	</select>	
+			,a.pilcgNameEng
+		FROM 
+			pilatesCodeGroup a
+		WHERE 1=1
+			<choose>
+				<when test="shPilcgDelNy == 1">AND pilcgDelNy=1</when>
+				<when test="shPilcgDelNy == 0">AND pilcgDelNy=0</when>
+			</choose>
+			<if test="shPilcgName != null and !shPilcgName.equals('')"> AND pilcgName LIKE concat('%', #{shPilcgName}, '%')</if> 
+			<choose>
+				<when test="shOption == 1">AND pilcgName like concat('%', #{shValue}, '%')</when>
+				<when test="shOption == 2">AND pilcgNameEng like concat('%', #{shValue}, '%')</when>
+			</choose>
+	</select>
 	
-		<insert id="insert">
-			INSERT into pilatesCodeGroup(
+	<insert id="insert">
+		INSERT INTO pilatesCodeGroup(
 			pilcgName
 			,pilcgDelNy
-			
-			) values (
+		) VALUES (
 			#{pilcgName}
-			,0
-			)
+			,0		
+		)		
 	</insert>
 	
 	<select id="selectOne" resultMap="resultMapObj">
-			SELECT 
-			pilcgSeq
-			, pilcgName
-			,pilcgDelNy
-			
-		FROM nct.pilatesCodeGroup 
+		SELECT
+			a.pilcgSeq
+			,a.pilcgName
+			,a.pilcgDelNy
+		FROM 
+			pilatesCodeGroup a
 		WHERE 1=1
-			AND pilcgSeq= #{pilcgSeq}
+			AND pilcgSeq=#{pilcgSeq}
+	</select>
+	<update id="update">
+		UPDATE 
+			pilatesCodeGroup 
+		SET 	
+			pilcgName = #{pilcgName}
+		WHERE 1=1
+			AND pilcgSeq =#{pilcgSeq }
+
+	</update>
+
+	<!-- infrCode -->
+	
+	<select id="selectListCode" resultMap="resultMapObj">
+		SELECT
+			pilcdSeq
+			,pilcdName
+			,pilcgSeq
+			
+		FROM 
+			pilatesCode
+		WHERE 1=1
+			
+			<if test="shPilcgSeq  != null and !shPilcgSeq .equals('')"> AND pilcgSeq = #{shPilcgSeq}</if> 
 	</select>
 	
-	<update id="update">
-			UPDATE
-				pilatesCodeGroup
-			SET 
-				pilcgName = #{pilcgName}
-			WHERE 1=1
-				AND  pilcgSeq = #{pilcgSeq}
-	</update>
-	
-	
-	<!-- code s -->
-		<!-- code list -->
- 		<select id="selectList1" resultMap="resultMapObj">
-			SELECT 
-			a.pilcdSeq
-			, a.pilcdName
-			,a.pilcdDelNy
-			,pilcgSeq
-		FROM nct.pilatesCode a
-				WHERE 1=1
-			AND pilcdDelNy = 0
-			 	<if test="shPilcgSeq != null and !shPilcgSeq.equals('')"> 
-			 AND pilcgSeq = #{shPilcgSeq}</if> 
-	</select>	
-		<insert id="insert1">
-			INSERT into pilatesCode(
-		
+	<insert id="insertCode">
+		INSERT INTO infrCode(
 			pilcdName
 			,pilcdDelNy
+			
 			,pilcgSeq
-			) values (
+		) VALUES (
 			#{pilcdName}
-			,0
+			,0		
+			
 			,#{pilcgSeq}
-			)
+		)		
 	</insert>
 	
-	<select id="selectOne1" resultMap="resultMapObj">
-			SELECT 
+	<select id="selectOneCode" resultMap="resultMapObj">
+		SELECT
 			pilcdSeq
 			,pilcdName
 			,pilcdDelNy
 			,pilcgSeq
-			FROM nct.pilatesCode
+			
+		FROM 
+			pilatesCode
 		WHERE 1=1
-			AND pilcdSeq= #{pilcdSeq}
+			AND pilcdSeq=#{pilcdSeq}
 	</select>
 	
-	<update id="update1">
-			UPDATE
-				pilatesCode
-			SET 
-				pilcdName = #{pilcdName}
-			WHERE 1=1
-				AND  pilcdSeq = #{pilcdSeq}
+	<update id="updateCode">
+		UPDATE pilatesCode SET 	
+			pilcdName = #{pilcdName}
+			
+			,pilcgSeq = #{pilcgSeq}
+		WHERE 1=1
+			AND pilcdSeq=#{pilcdSeq}
 	</update>
 	
-
 </mapper>
 

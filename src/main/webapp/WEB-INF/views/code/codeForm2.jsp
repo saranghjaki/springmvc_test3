@@ -10,6 +10,9 @@
 
 	<input type="hidden" name="pilcdSeq" value="<c:out value="${item.pilcdSeq}"/>">
 	<input type="text" name="pilcdName" placeholder="코드" value="<c:out value="${item.pilcdName}"/>">
+	<input type="hidden" name="pilcdSeq" value=<c:out value="${item.pilcdSeq}"/>>
+		<input type="text" name="pilcgSeq" value= <c:out value="${item.pilcgSeq}"/>>
 	<input type="submit" value="제출">
 	
 </form>
+

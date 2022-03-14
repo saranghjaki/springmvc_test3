@@ -9,14 +9,12 @@
 <form method="post" action="/infra/code/codeInst"> 
 
 
-<select name= "pilcgSeq">
-	<c:forEach items="${list}" var="item" varStatus="status">
-	<option value="<c:out value="${item.pilcgSeq}"/>"><c:out value="${item.pilcgName}"/>(<c:out value="${item.pilcgSeq})"/>
-	</option>
-	</c:forEach>
-	</select>
-	
-	<input type="text" name="pilcdName" placeholder="이름">
-	<input type="submit" value="제출">
-	
+    <select name="ifcgSeq">
+        <c:forEach items="${list}" var="item" varStatus="status">   
+            <option value="<c:out value="${item.pilcgSeq}"/>"><c:out value="${item.pilcgSeq}"/> | <c:out value="${item.pilcgName}"/></option>
+        </c:forEach>
+    </select>
+    <input type="text" name="ifcdName" placeholder="ifcdName">
+    <input type="submit" value="제출">
 </form>
+

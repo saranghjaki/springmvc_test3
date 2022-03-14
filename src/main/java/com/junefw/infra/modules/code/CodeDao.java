@@ -10,24 +10,34 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class CodeDao {
-
+	
 	@Inject
 	@Resource(name = "sqlSession")
 	private SqlSession sqlSession;
 	
 	private static String namespace = "com.junefw.infra.modules.code.CodeMpp";
+	
+	public List<Code> selectList(CodeVo vo){
+		List<Code> list = sqlSession.selectList(namespace + ".selectList", vo);
+		return list;
+	}
 
-	public List<Code> selectList(CodeVo vo){return sqlSession.selectList(namespace + ".selectList", vo); }
-	public int insert(Code dto){return sqlSession.insert(namespace + ".insert",dto);} //갯수를의미
+	public int insert(Code dto) { return sqlSession.insert(namespace+".insert", dto); }
 	public Code selectOne(CodeVo vo) { return sqlSession.selectOne(namespace + ".selectOne", vo);}
-	public int update(Code dto){return sqlSession.update(namespace + ".update", dto);}
-
-	/* code s */
 	
-	public List<Code> selectList1(CodeVo vo){return sqlSession.selectList(namespace + ".selectList1", vo); }
-	public int insert1(Code dto){return sqlSession.insert(namespace + ".insert1",dto);}
-	public Code selectOne1(CodeVo vo) { return sqlSession.selectOne(namespace + ".selectOne1", vo);}
-	public int update1(Code dto){return sqlSession.update(namespace + ".update1", dto);}
-
+	public int update(Code dto) { return sqlSession.update(namespace+".update", dto); }
 	
+//	infrCode------------------------------------------------------------------------------------------
+	
+	public List<Code> selectListCode(CodeVo vo){
+		List<Code> list = sqlSession.selectList(namespace + ".selectListCode",vo);						
+		return list;
+	}
+	
+	public int insertCode(Code dto) { return sqlSession.insert(namespace+".insertCode", dto); }				//영향을 미친 row값을 넘김
+	
+	public Code selectOneCode(CodeVo vo) { return sqlSession.selectOne(namespace + ".selectOneCode", vo);}	//객체로 리턴
+
+	public int updateCode(Code dto) { return sqlSession.update(namespace+".updateCode", dto); }				//영향을 미친 row값을 넘김
 }
+	

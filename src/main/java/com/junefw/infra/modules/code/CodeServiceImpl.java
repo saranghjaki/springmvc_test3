@@ -12,13 +12,15 @@ public class CodeServiceImpl implements CodeService{
 	@Autowired
 	CodeDao dao;
 
+//  infrCodeGroup
+	
 	@Override
 	public List<Code> selectList(CodeVo vo) throws Exception {
 		return dao.selectList(vo); 
 	}
 	@Override
 	public int insert(Code dto) throws Exception {
-		// TODO Auto-generated method stub
+		
 		return dao.insert(dto);
 	}
 
@@ -36,27 +38,27 @@ public class CodeServiceImpl implements CodeService{
 		/* CODE S */
 
 	@Override
-	public List<Code> selectList1(CodeVo vo) throws Exception {
-		// TODO Auto-generated method stub
-		return dao.selectList1(vo);
+	public List<Code> selectListCode(CodeVo vo) throws Exception {
+		
+		return dao.selectListCode(vo);
 	}
 
 	@Override
-	public int insert1(Code dto) throws Exception {
-		// TODO Auto-generated method stub
-		return dao.insert1(dto);
+	public int insertCode(Code dto) throws Exception {
+	
+		return dao.insertCode(dto);
 	}
 
 	@Override
-	public Code selectOne1(CodeVo vo) throws Exception {
-		// TODO Auto-generated method stub
-		return dao.selectOne1(vo);
+	public Code selectOneCode(CodeVo vo) throws Exception {
+		
+		return dao.selectOneCode(vo);
 	}
 
 	@Override
-	public int update1(Code dto) throws Exception {
-		// TODO Auto-generated method stub
-		return dao.update1(dto);	
+	public int updateCode(Code dto) throws Exception {
+		
+		return dao.updateCode(dto);	
 	}
 		
 	

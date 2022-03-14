@@ -12,21 +12,14 @@ public class CodeVo {
 	/* Code Search */
 	private Integer shPilcgSeq;
 
-		
+	/* common */
+	private String shOption;
+	private String shValue;
 	public String getPilcgSeq() {
 		return pilcgSeq;
 	}
 	public void setPilcgSeq(String pilcgSeq) {
 		this.pilcgSeq = pilcgSeq;
-	}
-	
-
-
-	public String getPilcdSeq() {
-		return pilcdSeq;
-	}
-	public void setPilcdSeq(String pilcdSeq) {
-		this.pilcdSeq = pilcdSeq;
 	}
 	public String getShPilcgName() {
 		return shPilcgName;
@@ -40,11 +33,31 @@ public class CodeVo {
 	public void setShPilcgDelNy(Integer shPilcgDelNy) {
 		this.shPilcgDelNy = shPilcgDelNy;
 	}
+	public String getPilcdSeq() {
+		return pilcdSeq;
+	}
+	public void setPilcdSeq(String pilcdSeq) {
+		this.pilcdSeq = pilcdSeq;
+	}
 	public Integer getShPilcgSeq() {
 		return shPilcgSeq;
 	}
 	public void setShPilcgSeq(Integer shPilcgSeq) {
 		this.shPilcgSeq = shPilcgSeq;
 	}
+	public String getShOption() {
+		return shOption;
+	}
+	public void setShOption(String shOption) {
+		this.shOption = shOption;
+	}
+	public String getShValue() {
+		return shValue;
+	}
+	public void setShValue(String shValue) {
+		this.shValue = shValue;
+	}
+	
+	//---------------------------------//	
 
 }
