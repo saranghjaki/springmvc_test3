@@ -9,6 +9,22 @@
     <resultMap id="resultMapObj" type="com.junefw.infra.modules.code.Code"></resultMap>
    <!-- 결과객체지정 -->
 	<!-- infrCodeGroup -->
+	
+	<sql id="selectCommon">
+		FROM
+			pilatesCodeGroup a
+		WHERE 1=1
+		<choose>
+			<when test="shPilcgDelNy == 1">AND pilcgDelNy=1</when>
+			<when test="shPilcgDelNy == 0">AND pilcgDelNy=0</when>
+		</choose>
+		<if test="shPilcgName != null and !shPilcgName.equals('')"> AND pilcgName LIKE concat('%', #{shPilcgName}, '%')</if> 
+		<choose>
+			<when test="shOption == 1">AND pilcgName like concat('%', #{shValue}, '%')</when>
+			<when test="shOption == 2">AND pilcgNameEng like concat('%', #{shValue}, '%')</when>
+		</choose>
+	</sql>
+	
 
 	<select id="selectList" resultMap="resultMapObj">
 		SELECT
@@ -16,20 +32,16 @@
 			,a.pilcgName
 			,a.pilcgDelNy
 			,a.pilcgNameEng
-		FROM 
-			pilatesCodeGroup a
-		WHERE 1=1
-			<choose>
-				<when test="shPilcgDelNy == 1">AND pilcgDelNy=1</when>
-				<when test="shPilcgDelNy == 0">AND pilcgDelNy=0</when>
-			</choose>
-			<if test="shPilcgName != null and !shPilcgName.equals('')"> AND pilcgName LIKE concat('%', #{shPilcgName}, '%')</if> 
-			<choose>
-				<when test="shOption == 1">AND pilcgName like concat('%', #{shValue}, '%')</when>
-				<when test="shOption == 2">AND pilcgNameEng like concat('%', #{shValue}, '%')</when>
-			</choose>
+		<include refid="selectCommon" />
+		limit #{startRnumForMysql},#{rowNumToShow}
 	</select>
-	
+		
+		<select id="selectOneCount" resultType="Integer">
+		SELECT
+			count(*)
+		<include refid="selectCommon" />
+			</select>
+		
 	<insert id="insert">
 		INSERT INTO pilatesCodeGroup(
 			pilcgName
@@ -61,19 +73,35 @@
 	</update>
 
 	<!-- infrCode -->
+	<sql id="selectCommonCode">
+		FROM 
+			pilatesCode
+		WHERE 1=1
+		<choose>
+				<when test="shOption == 1">AND pilcdName like concat('%', #{shValue}, '%')</when>
+				<when test="shOption == 2">AND pilcdNameEng like concat('%', #{shValue}, '%')</when>
+			</choose>
+			<if test="shPilcgSeq  != null and !shPilcgSeq .equals('')"> AND pilcgSeq = #{shPilcgSeq}</if> 
+	</sql>
+	
+	
 	
 	<select id="selectListCode" resultMap="resultMapObj">
 		SELECT
 			pilcdSeq
 			,pilcdName
 			,pilcgSeq
-			
-		FROM 
-			pilatesCode
-		WHERE 1=1
-			
-			<if test="shPilcgSeq  != null and !shPilcgSeq .equals('')"> AND pilcgSeq = #{shPilcgSeq}</if> 
+			,pilcdNameEng
+			<include refid="selectCommonCode" />
+			limit #{startRnumForMysql},#{rowNumToShow}
 	</select>
+	
+	<select id="selectOneCountCode" resultType="Integer">
+		SELECT
+			count(*)
+		<include refid="selectCommonCode" />
+	</select>
+	
 	
 	<insert id="insertCode">
 		INSERT INTO infrCode(

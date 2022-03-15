@@ -5,23 +5,39 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class CodeController {
+	
+
+
+	
 	@Autowired
 	CodeServiceImpl service;
 
-	
+//	codeGroup
 	@RequestMapping(value = "/code/codeGroupList")
-	public String codeGroupList(CodeVo vo, Model model) throws Exception {
+	public String codeGroupList(@ModelAttribute("vo") CodeVo vo, Model model) throws Exception { 
+		//count 가져올것
+		int count = service.selectOneCount(vo);
 		
-		List<Code> list = service.selectList(vo);
-		model.addAttribute("list", list);
+		vo.setParamsPaging(count);
+		
+		if(count != 0) {
+			List<Code> list = service.selectList(vo);
+			model.addAttribute("list", list);
+		}else { //by pass
+		
+		}
+		//model.addAttribute("vo",vo);
 		
 		return "code/codeGroupList";
 	}
-
+	
+	
+	
 	@RequestMapping(value = "/code/codeGroupForm")
 	public String codeGroupForm() throws Exception {
 		
@@ -69,13 +85,19 @@ public class CodeController {
 	
 //	code---------------------------------------------------------------
 	@RequestMapping(value = "/code/codeList")
-	public String codeList(CodeVo vo, Model model) throws Exception {
+	public String codeList(@ModelAttribute("vo")CodeVo vo, Model model) throws Exception {
 		
-		List<Code> list = service.selectListCode(vo);
-		model.addAttribute("list", list);
-
-		List<Code> listCodeGroup = service.selectList(vo);
-		model.addAttribute("listCodeGroup", listCodeGroup);
+int count = service.selectOneCount(vo);
+		
+		vo.setParamsPaging(count);
+		
+		if(count != 0) {
+			List<Code> list = service.selectListCode(vo);
+			model.addAttribute("list", list);
+		}else { //by pass
+		
+		}
+		//model.addAttribute("vo",vo);
 		
 		return "code/codeList";
 	}
