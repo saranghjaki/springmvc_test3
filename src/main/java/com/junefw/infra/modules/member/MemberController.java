@@ -19,9 +19,18 @@ public class MemberController {
 	@RequestMapping(value = "/member/memberList")
 //	public String memberList(@ModelAttribute("vo") MemberVo vo, Model model) throws Exception {
 	public String memberList(MemberVo vo,Model model) throws Exception {
+		int count = service.selectOneCount(vo);
 		
-		List<Member> list = service.selectList(vo);
-		model.addAttribute("list", list);  
+		vo.setParamsPaging(count);
+		
+		if(count != 0) {
+			List<Member> list = service.selectList(vo);
+			model.addAttribute("list", list);
+		}else { 
+		
+		}
+		model.addAttribute("vo",vo);
+		
 		return "member/memberList";
 	}
 	

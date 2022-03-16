@@ -87,7 +87,7 @@ public class CodeController {
 	@RequestMapping(value = "/code/codeList")
 	public String codeList(@ModelAttribute("vo")CodeVo vo, Model model) throws Exception {
 		
-int count = service.selectOneCount(vo);
+		int count = service.selectOneCountCode(vo);
 		
 		vo.setParamsPaging(count);
 		

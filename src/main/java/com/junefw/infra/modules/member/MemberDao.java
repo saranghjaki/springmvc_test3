@@ -19,6 +19,7 @@ public class MemberDao {
 	
 	private static String namespace = "com.junefw.infra.modules.member.MemberMpp";
 
+	public int selectOneCount(MemberVo vo) { return sqlSession.selectOne(namespace + ".selectOneCount", vo);}
 	public List<Member> selectList(MemberVo vo){ return sqlSession.selectList(namespace + ".selectList", vo); }
 	public int insert(Member dto){ 	return sqlSession.insert(namespace + ".insert", dto);}
 	public Member selectOne(MemberVo vo) { return sqlSession.selectOne(namespace + ".selectOne", vo);}

@@ -8,24 +8,36 @@
 
     <resultMap id="resultMapObj" type="com.junefw.infra.modules.member.Member"></resultMap>
 
+<!-- member -->
+	<sql id="selectCommon">
+		FROM
+			pilatesMember
+		WHERE 1=1
+			<choose>
+				<when test="shPilmmDelNy==1">AND pilmmDelNy=1</when>
+				<when test="shPilmmDelNy==0">AND pilmmDelNy=0</when>
+			</choose>
+		<if test="shPilmmName != null and !shPilmmName.equals('')"> 
+		 AND PilmmName LIKE concat('%',#{shPilmmName},'%')
+		 </if> 
+	</sql>
+	
 	<select id="selectList" resultMap="resultMapObj">
 			select
 				pilmmSeq
 				,pilmmId
 				, pilmmName
 				,pilmmDob
-			from
-				pilatesMember
-						WHERE 1=1
-							<choose>
-					<when test="shPilmmDelNy==1">AND pilmmDelNy=1</when>
-					<when test="shPilmmDelNy==0">AND pilmmDelNy=0</when>
-				</choose>
-			<if test="shPilmmName != null and !shPilmmName.equals('')"> 
-			 AND PilmmName LIKE concat('%',#{shPilmmName},'%')
-			 </if> 
-	</select> 
-	
+		<include refid="selectCommon" />
+		limit #{startRnumForMysql},#{rowNumToShow}
+	</select>
+
+	<select id="selectOneCount" resultType="Integer">
+		SELECT
+			count(*)
+		<include refid="selectCommon" />
+	</select>
+
 	<insert id="insert">
 			insert into pilatesMember (
 				
