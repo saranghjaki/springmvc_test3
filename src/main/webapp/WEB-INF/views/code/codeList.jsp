@@ -57,12 +57,12 @@ codelist
 		                <li class="page-item active"><a class="page-link" href="/infra/code/codeGroupList?thisPage=${i.index}">${i.index}</a></li>
 				</c:when>
 				<c:otherwise>             
-		                <li class="page-item"><a class="page-link" href="/infra/code/codeGroupList?thisPage=${i.index}">${i.index}</a></li>
+		                <li class="page-item"><a class="page-link" href="/infra/code/codeList?thisPage=${i.index}">${i.index}</a></li>
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>     
 		<c:if test="${vo.endPage ne vo.totalPages}">                
-		                <li class="page-item"><a class="page-link" href="/infra/code/codeGroupList?thisPage=${vo.endPage + 1}">Next</a></li>
+		                <li class="page-item"><a class="page-link" href="/infra/code/codeList?thisPage=${vo.endPage + 1}">Next</a></li>
 		</c:if>  
   </ul>
 </nav>
