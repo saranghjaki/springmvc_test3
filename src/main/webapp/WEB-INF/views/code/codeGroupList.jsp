@@ -9,21 +9,23 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
                       
 <form id="" name="" method="get" action="/infra/code/codeGroupList">
-<select name="shPilcgDelNy">
+<select name="shPilcgDelNy"id="shPilcgDelNy" >
 	<option value="">::삭제여부::
 	<option value="1">::Y::
 	<option value="0">::N::
 </select>
 
-회원이름: <input type="text" name="shPilcgName">
+회원이름: <input type="text" name="shPilcgName" id="shPilcgName">
 
-<select name="shOption">
+<select name="shOption" id="shOption">
 	<option value="">::검색구분::
 	<option value="1">::한글::
 	<option value="2">::영문::
 </select>
-회원이름: <input type="text" name="shValue">
- <input type="submit" name="search">
+
+ <input type="text" name="shValue" id= "shValue" >
+<input type="submit" id="btnSubmit" name="search">
+<input type="submit" id="btnSubmit2" name="search">
  <br>
 <c:choose>
 	<c:when test="${fn:length(list) eq 0}">
@@ -69,5 +71,51 @@
 		</c:if>  
   </ul>
 </nav>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script >
+
+<script type ="text/javascript">
+	$("#btnSubmit").on("click",funtion(){
+		/* alert($("#shOption").val()); */
+		
+		alert($("#shPilName").val());  //jquery 방식
+		confirm("진짜 삭제하시겠습니까?");
+	});
+</script> -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="/infra/resources/js/validation.js"></script>
+
+<script type="text/javascript">
+	$("#btnSubmit").on("click",function(){
+		//이벤트 click / change->seletbox 변경되었을때 /
+	/* 	if($("#shPilcgName").val() == "" || $("#shPilcgName").val() == null){
+			alert("unll이다");
+			$("#shPilcgName").focus();
+		}  */
+		if(!checkNull($("#shPilcgName"),$("#shPilcgName").val(),"name입력해주세요")) return false;
+		if(!checkNull($("#shPilcgName"),$("#shPilcgName").val(),"검색어를 입력해주세요")) return false;
+		if(!checkNull($("#shValue"),$("#shValue").val(),"값이 입력되지 않았습니다 name입력해주십시오")) return false;
+		if(!checkNull($("#shPilcgDelNy"),$("#shPilcgDelNy").val(),"삭제여부체크해주세요")) return false;
+		if(!checkNull($("#shOption"),$("#shOption").val(),"검색구분체크해주세요")) return false;
+		
+		 
+			  
+		/* alert($("#shOption").val()); */
+		/* alert("jquery:"+ $("#shPilcgName").val() );
+		alert("jquery:"+ $("#shPilcgName").val("회원") );
+		alert("jquery:"+ $("#shPilcgName").val() );
+ */		//처음에 값을 보여주고 값을 2로 바꿈
+		/* alert("jquery:"+ $("#shPilcgName").val() );	//jquery방식 id쓰는곳
+		alert("jquery:"+ $("input[name ==shPilcgName]").val() );	//jquery방식 id안쓸때
+		alert("jquery:"+ $("#shPilcgDelNy").val() );		//jquery방식
+		alert("javascript:"+document.getElementById("shPilcgName").value );		//javascript방식
+		alert("javascript:"+document.getElementById("shPilcgDelNy").value );		//javascript방식 */
+	});
+
+	
+	$("#btnSubmit2").on("click",function(){
+		alert("두번째버튼입니다")
+	});
+</script>
+
 
  
