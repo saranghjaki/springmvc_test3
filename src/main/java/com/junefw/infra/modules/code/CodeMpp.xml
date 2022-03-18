@@ -33,13 +33,15 @@
 			,a.pilcgDelNy
 			,a.pilcgNameEng
 		<include refid="selectCommon" />
-		limit #{startRnumForMysql},#{rowNumToShow}
+			<if test="startRnumForMysql != null and !startRnumForMysql.equals('')">	
+				limit #{startRnumForMysql},#{rowNumToShow} </if>
 	</select>
 		
 		<select id="selectOneCount" resultType="Integer">
 		SELECT
 			count(*)
 		<include refid="selectCommon" />
+		  
 			</select>
 		
 	<insert id="insert">
@@ -49,7 +51,10 @@
 		) VALUES (
 			#{pilcgName}
 			,0		
-		)		
+		)
+	<selectKey resultType="String" keyProperty="fdcgSeq" order="AFTER">
+		SELECT last_insert_id()
+	</selectKey>
 	</insert>
 	
 	<select id="selectOne" resultMap="resultMapObj">
@@ -93,7 +98,8 @@
 			,pilcgSeq
 			,pilcdNameEng
 			<include refid="selectCommonCode" />
-			limit #{startRnumForMysql},#{rowNumToShow}
+				<if test="startRnumForMysql != null and !startRnumForMysql.equals('')">	
+				limit #{startRnumForMysql},#{rowNumToShow} </if>
 	</select>
 	
 	<select id="selectOneCountCode" resultType="Integer">

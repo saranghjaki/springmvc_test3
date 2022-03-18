@@ -9,13 +9,13 @@
 
 
 <form id="" name="" method="get" action="/infra/member/memberList">
-<select name="shPilmmDelNy">
+<select name="shPilmmDelNy" id="shPilmmDelNy">
 	<option value="">::삭제여부::
-	<option value="1">::Y::
-	<option value="0">::N::</option>
+	<option value="1"<c:if test="${vo.shPilmmDelNy eq 1 }">selected</c:if>>::Y::
+	<option value="0"<c:if test="${vo.shPilmmDelNy eq 0 }">selected</c:if>>::N::</option>
 </select>
-	회원이름: <input type="text" name="shPilmmName">
- <input type="submit" name="search">
+	회원이름: <input type="text" name="shPilmmName" id="shPilmmName" value="<c:out value ="${vo.shPilmmName }"/>">
+ <input type="submit" id="btnSubmit"  name="search">
  <br>
 
 <c:choose>
@@ -57,3 +57,13 @@
 		</c:if>  
   </ul>
 </nav>
+
+<script src="/infra/resources/js/validation.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript">
+
+	$("#btnSubmit").on("click",function(){
+	if(!checkNull($("#shPilmmDelNy"),$("#shPilmmDelNy").val(),"삭제여부를 선택하지 않았습니다 선택해주세요")) return false;
+	if(!checkNull($("#shPilmmName"),$("#shPilmmName").val(),"name입력해주세요")) return false;
+	});
+	</script>

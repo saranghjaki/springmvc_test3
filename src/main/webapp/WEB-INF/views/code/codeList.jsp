@@ -11,19 +11,22 @@ codelist
 <form id="" name="" method="get" action="/infra/code/codeList">
 <select name="shPilcgSeq">
 	<option value="">::코드그룹::</option>
-		<c:forEach items="${listCodeGroup}" var="item" varStatus="status">	
+		<c:forEach items="${listCodeGroup}" var="item" varStatus="status">
 	<option value="<c:out value="${item.pilcgSeq}"/>"<c:if test="${param.shPilcgSeq eq item.pilcgSeq}">selected</c:if>> <c:out value="${item.pilcgName}"></c:out></option>
 		</c:forEach>	
 </select>
+
+
+
 <input type="submit" name="search">
 
-<select name="shOption">
+<select name="shOption"  id="shOption">
 	<option value="">::검색구분::
-	<option value="1">::한글::
-	<option value="2">::영문::
+	<option value="1"<c:if test="${vo.shOption eq 1 }">selected</c:if>>::한글::
+	<option value="2"<c:if test="${vo.shOption eq 2 }">selected</c:if>>::영문::
 </select>
-회원이름: <input type="text" name="shValue">
-<input type="submit" name="검색">
+회원이름: <input type="text" name="shValue"id= "shValue" value="<c:out value = "${vo.shValue }"/>">
+<input type="submit" name="검색" id="btnSubmit">
 <br>
 
 <c:choose>
@@ -66,3 +69,13 @@ codelist
 		</c:if>  
   </ul>
 </nav>
+
+<script src="/infra/resources/js/validation.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript">
+
+	$("#btnSubmit").on("click",function(){
+	if(!checkNull($("#shValue"),$("#shValue").val(),"name입력해주세요")) return false;
+	if(!checkNull($("#shOption"),$("#shOption").val(),"검색구분체크해주세요")) return false;
+	});
+	</script>
