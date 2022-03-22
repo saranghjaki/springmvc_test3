@@ -10,5 +10,7 @@
 <c:out value="${item.pilcgName}"/>
 <c:out value="${item.pilcgDelNy}"/> 
 <!-- <a href ="../infra/code/codeGroupForm">수정</a> -->
+<a href="/infra/code/codeGroupList?shOption=<c:out value="${vo.shOption}"/>&shValue=<c:out value="${vo.shValue}"/>">목록</a>
+<a href="/infra/code/codeGroupList?thisPage=${vo.thisPage}&shOption=<c:out value="${vo.shOption}"/>&shValue=<c:out value="${vo.shValue}"/>">목록</a>
 
 <a href="/infra/code/codeGroupForm2?pilcgSeq=<c:out value="${item.pilcgSeq}"/>">수정</a>

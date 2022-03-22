@@ -78,6 +78,8 @@ public class CodeVo {
 		System.out.println("getStartRnumForMysql(): " + startRnumForMysql);
 		
 	}
+	
+	
 //----------------------------------------------------------//
 	
 	

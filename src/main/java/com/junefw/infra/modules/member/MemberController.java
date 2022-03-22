@@ -24,6 +24,7 @@ public class MemberController {
 		vo.setParamsPaging(count);
 		
 		if(count != 0) {
+		
 			List<Member> list = service.selectList(vo);
 			model.addAttribute("list", list);
 		}else { 
@@ -65,7 +66,9 @@ public class MemberController {
 	public String memberForm2(MemberVo vo, Model model) throws Exception {
 		//
 		Member rt = service.selectOne(vo);
+		
 		model.addAttribute("item", rt);
+		
 		return "member/memberForm2";
 
 	}

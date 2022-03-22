@@ -10,7 +10,7 @@
 	<input type="text" name="pilcgName" id= "pilcgName"placeholder="코드그룹">
 	<input type="text" name="pilcdName" id= "pilcdName"placeholder="코드">
 	<input type="submit" id="btnSubmit" value="제출">
-		
+	
 </form>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

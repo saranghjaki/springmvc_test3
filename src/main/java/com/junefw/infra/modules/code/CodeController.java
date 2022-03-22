@@ -8,8 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.junefw.infra.modules.program.Program;
-
 @Controller
 public class CodeController {
 	
@@ -50,15 +48,18 @@ public class CodeController {
 		return "code/codeGroupForm";
 	}
 	@RequestMapping(value = "/code/codeGroupInst")
-	public String codeGroupInst(Code dto) throws Exception {
-
+	public String codeGroupInst(CodeVo vo,Code dto) throws Exception {
+		System.out.println("dto.getPilcgSeq():"+ dto.getPilcgSeq());
 //		입력실행
 		service.insert(dto);
-		return "redirect:/code/codeGroupList";
+		System.out.println("dto.getPilcgSeq():"+ dto.getPilcgSeq());
+		//return "redirect:/code/codeGroupView";
+		return "redirect:/code/codeGroupView?pilcgSeq="+ dto.getPilcgSeq()+"&thisPage="+ vo.getThisPage() +"&shOption="+ vo.getShOption() +"&shValue="+ vo.getShValue();
 	}
 	
 	@RequestMapping(value = "/code/codeGroupView")
-	public String codeGroupView(CodeVo vo, Model model) throws Exception {
+	public String codeGroupView(@ModelAttribute("vo")CodeVo vo, Model model) throws Exception {
+		System.out.println("vo.getShOption()"+vo.getShOption());
 		
 		//디비까지 가서 한 건의 데이터 값을 가지고 온다,VO
 		Code rt = service.selectOne(vo);

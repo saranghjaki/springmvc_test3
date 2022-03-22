@@ -33,8 +33,8 @@
 			,a.pilcgDelNy
 			,a.pilcgNameEng
 		<include refid="selectCommon" />
-			<if test="startRnumForMysql != null and !startRnumForMysql.equals('')">	
-				limit #{startRnumForMysql},#{rowNumToShow} </if>
+				ORDER BY pilcgSeq DESC
+				limit #{startRnumForMysql},#{rowNumToShow} 
 	</select>
 		
 		<select id="selectOneCount" resultType="Integer">
@@ -52,7 +52,7 @@
 			#{pilcgName}
 			,0		
 		)
-	<selectKey resultType="String" keyProperty="fdcgSeq" order="AFTER">
+	<selectKey resultType="String" keyProperty="pilcgSeq" order="AFTER">
 		SELECT last_insert_id()
 	</selectKey>
 	</insert>
