@@ -1,5 +1,8 @@
 package com.junefw.infra.modules.code;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Code {
 //	infrCodeGroup
 	private String pilcgSeq;
@@ -11,6 +14,12 @@ public class Code {
 	private String pilcdName;
 	private String pilcdNameEng;
 	private Integer pilcdDelNy;
+	private Integer pilcdUseNy;
+	private  String pilmmSeq;
+	
+	//For cache 메모리에 상주하고있는 리스트 변수의이름
+	public static  List<Code> cachedCodeArrayList = new ArrayList<Code>();
+	
 	//private String pilcgSeq;
 	public String getPilcgSeq() {
 		return pilcgSeq;
@@ -59,6 +68,18 @@ public class Code {
 	}
 	public void setPilcdDelNy(Integer pilcdDelNy) {
 		this.pilcdDelNy = pilcdDelNy;
+	}
+	public Integer getPilcdUseNy() {
+		return pilcdUseNy;
+	}
+	public void setPilcdUseNy(Integer pilcdUseNy) {
+		this.pilcdUseNy = pilcdUseNy;
+	}
+	public String getPilmmSeq() {
+		return pilmmSeq;
+	}
+	public void setPilmmSeq(String pilmmSeq) {
+		this.pilmmSeq = pilmmSeq;
 	}
 	
 	

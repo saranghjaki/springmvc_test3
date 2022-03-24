@@ -8,6 +8,12 @@
 
 <form method="post" action="/infra/member/memberInst"> 
 
+<select name=" pilmmGenderCd">
+	<option value="">::성별::</option>
+		<c:forEach items="${codeGender}" var="itemGender" varStatus="statusGender">
+	<option value="<c:out value="${itemGender.pilcdSeq}"/>"<c:if test="${itemGender.pilmmSeq eq itemGender.pilcdSeq}">selected</c:if>> <c:out value="${itemGender.pilcdName}"></c:out></option>
+		</c:forEach>	
+</select>
 
 
 	

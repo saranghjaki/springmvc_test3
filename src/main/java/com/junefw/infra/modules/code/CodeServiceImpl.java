@@ -1,6 +1,9 @@
 package com.junefw.infra.modules.code;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,6 +43,15 @@ public class CodeServiceImpl implements CodeService{
 	public int update(Code dto) throws Exception {
 		return dao.update(dto);	
 		}
+	@Override
+	public int delete(CodeVo vo) throws Exception {
+		return dao.delete(vo);
+	}
+	
+	@Override
+	public int updateDelete(CodeVo vo) throws Exception {
+		return dao.updateDelete(vo);
+	}
 	
 		/* CODE S */
 
@@ -72,7 +84,27 @@ public class CodeServiceImpl implements CodeService{
 		
 		return   dao.selectOneCount(vo);
 	}
-
+	@PostConstruct
+	
+	public List<Code> selectListForCache(){
+		 List<Code> codeListForDb = (ArrayList<Code>)dao.selectListForCache();
+		
+		 Code.cachedCodeArrayList.clear();
+		 Code.cachedCodeArrayList.addAll(codeListForDb);
+		 System.out.println("cachedCodeArrayList:"+Code.cachedCodeArrayList.size()+"chached!");
+		return null;
+	}
+	public static List<Code>selectListForCache(String pilcgSeq)throws Exception {
+		List<Code> rt = new ArrayList<Code>();
+		for(Code codeRow : Code.cachedCodeArrayList){
+			if (codeRow.getPilcgSeq().equals(pilcgSeq)) {
+				rt.add(codeRow);			
+			}else {
+				//bu pass
+			}
+		}
+		return rt;
+	}
 		
 	
 	

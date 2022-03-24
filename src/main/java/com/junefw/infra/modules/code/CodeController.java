@@ -7,18 +7,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class CodeController {
 	
 	@Autowired
-	CodeServiceImpl service;
-
-//	codeGroup
-	@RequestMapping(value = "/code/codeGroupList")
+	CodeServiceImpl service;           
+                                                  //method= RequestMethod.POST->접근자체불가 
+//	codeGroup                    //  이페이지까지는 GET방식이지만 검색은 POST라 검색안됨 method= RequestMethod.GET->405오류 접근은 가능하나 검색시 접근불가
+	@RequestMapping(value = "/code/codeGroupList") 
 	public String codeGroupList(@ModelAttribute("vo") CodeVo vo, Model model) throws Exception {
 		//count가져올 것
-		
 		
 		int count = service.selectOneCount(vo);
 		
@@ -39,27 +40,45 @@ public class CodeController {
 	}
 	
 	@RequestMapping(value = "/code/codeGroupForm")
-	public String codeGroupForm(CodeVo vo, Model model) throws Exception {
-		List<Code> listCodeGroup  = service.selectList(vo);
+	public String codeGroupForm(@ModelAttribute("vo")CodeVo vo) throws Exception {
+		//List<Code> listCodeGroup  = service.selectList(vo);
 		
-		model.addAttribute("listCodeGroup", listCodeGroup );
+		//model.addAttribute("listCodeGroup", listCodeGroup );
 		
 		
 		return "code/codeGroupForm";
 	}
 	@RequestMapping(value = "/code/codeGroupInst")
-	public String codeGroupInst(CodeVo vo,Code dto) throws Exception {
+	public String codeGroupInst(CodeVo vo,Code dto, RedirectAttributes redirectAttributes ) throws Exception {
 		System.out.println("dto.getPilcgSeq():"+ dto.getPilcgSeq());
-//		입력실행
+		
+		//입력실행
 		service.insert(dto);
+		
 		System.out.println("dto.getPilcgSeq():"+ dto.getPilcgSeq());
 		//return "redirect:/code/codeGroupView";
-		return "redirect:/code/codeGroupView?pilcgSeq="+ dto.getPilcgSeq()+"&thisPage="+ vo.getThisPage() +"&shOption="+ vo.getShOption() +"&shValue="+ vo.getShValue();
+		redirectAttributes.addAttribute("pillcgSeq",dto.getPilcgSeq());//get
+		redirectAttributes.addAttribute("thisPage",vo.getThisPage());//get
+		redirectAttributes.addAttribute("shOption",vo.getShOption());//get
+		redirectAttributes.addAttribute("shValue",vo.getShValue());//get
+		
+		return "redirect:/code/codeGroupView";
+		//return "redirect:/code/codeGroupView?pilcgSeq="+ dto.getPilcgSeq()+makeQueryString(vo);
 	}
 	
+	public String makeQueryString(CodeVo vo) {
+		String tmp = "&thisPage="+ vo.getThisPage()
+					+"&shOption="+ vo.getShOption() 
+					+"&shValue="+ vo.getShValue();
+		
+		return tmp;
+	}
 	@RequestMapping(value = "/code/codeGroupView")
 	public String codeGroupView(@ModelAttribute("vo")CodeVo vo, Model model) throws Exception {
-		System.out.println("vo.getShOption()"+vo.getShOption());
+		System.out.println(" vo.getThisPage()" + vo.getThisPage());
+		System.out.println(" vo.getShOption():"+  vo.getShOption());
+		System.out.println("vo.getShValue():"+  vo.getShValue());
+		System.out.println("vo.getpilcgSeq():"+  vo.getPilcgSeq());
 		
 		//디비까지 가서 한 건의 데이터 값을 가지고 온다,VO
 		Code rt = service.selectOne(vo);
@@ -71,7 +90,7 @@ public class CodeController {
 	}
 	
 	@RequestMapping(value = "/code/codeGroupForm2")
-	public String codeGroupForm2(CodeVo vo, Model model) throws Exception {
+	public String codeGroupForm2(@ModelAttribute("vo")CodeVo vo, Model model) throws Exception {
 		
 		//디비까지 가서 한 건의 데이터값을 가지고 온다. 	
 		Code rt = service.selectOne(vo);
@@ -82,11 +101,38 @@ public class CodeController {
 		return "code/codeGroupForm2";
 	}
 	@RequestMapping(value = "/code/codeGroupUpdt")
-	public String codeGroupUpdt(Code dto) throws Exception {
-		
+	public String codeGroupUpdt(@ModelAttribute("vo")CodeVo vo,Code dto, RedirectAttributes redirectAttributes) throws Exception {
+	
 		//수정프로세스 실행
 		service.update(dto);
-		return "redirect:/code/codeGroupView?pilcgSeq="+dto.getPilcgSeq();
+		return "redirect:/code/codeGroupView?pilcgSeq="+dto.getPilcgSeq()
+		+ makeQueryString(vo);
+	}
+	@RequestMapping(value = "/code/codeGroupDele")
+	public String codeGroupDele(CodeVo vo,RedirectAttributes redirectAttributes ) throws Exception {
+	
+		service.delete(vo);
+		
+	
+		redirectAttributes.addAttribute("thisPage",vo.getThisPage());//get
+		redirectAttributes.addAttribute("shOption",vo.getShOption());//get
+		redirectAttributes.addAttribute("shValue",vo.getShValue());//get
+		
+		return "redirect:/code/codeGroupList/";
+	
+	}
+	@RequestMapping(value = "/code/codeGroupNele")
+	public String codeGroupNele(CodeVo vo,RedirectAttributes redirectAttributes ) throws Exception {
+		
+		service.updateDelete(vo);
+		
+		
+		redirectAttributes.addAttribute("thisPage",vo.getThisPage());//get
+		redirectAttributes.addAttribute("shOption",vo.getShOption());//get
+		redirectAttributes.addAttribute("shValue",vo.getShValue());//get
+		
+		return "redirect:/code/codeGroupList/";
+		
 	}
 	
 //	code---------------------------------------------------------------

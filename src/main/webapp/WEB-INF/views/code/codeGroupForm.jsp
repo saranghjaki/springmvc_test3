@@ -7,8 +7,13 @@
 
 
 <form id="form" method="post" action="/infra/code/codeGroupInst"> 
+	 <input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage}"/>">
+     <input type="hidden" name="shOption" value="<c:out value="${vo.shOption}"/>">
+     <input type="hidden" name="shValue" value="<c:out value="${vo.shValue}"/>">  
+     <input type="hidden" name="" >  
+	
 	<input type="text" name="pilcgName" id= "pilcgName"placeholder="코드그룹">
-	<input type="text" name="pilcdName" id= "pilcdName"placeholder="코드">
+	<!-- <input type="text" name="pilcdName" id= "pilcdName"placeholder="코드"> -->
 	<input type="submit" id="btnSubmit" value="제출">
 	
 </form>

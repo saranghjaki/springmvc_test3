@@ -14,6 +14,7 @@
 		FROM
 			pilatesCodeGroup a
 		WHERE 1=1
+		
 		<choose>
 			<when test="shPilcgDelNy == 1">AND pilcgDelNy=1</when>
 			<when test="shPilcgDelNy == 0">AND pilcgDelNy=0</when>
@@ -23,6 +24,7 @@
 			<when test="shOption == 1">AND pilcgName like concat('%', #{shValue}, '%')</when>
 			<when test="shOption == 2">AND pilcgNameEng like concat('%', #{shValue}, '%')</when>
 		</choose>
+		
 	</sql>
 	
 
@@ -33,6 +35,7 @@
 			,a.pilcgDelNy
 			,a.pilcgNameEng
 		<include refid="selectCommon" />
+				AND a.pilcgDelNy = 0
 				ORDER BY pilcgSeq DESC
 				limit #{startRnumForMysql},#{rowNumToShow} 
 	</select>
@@ -67,6 +70,7 @@
 		WHERE 1=1
 			AND pilcgSeq=#{pilcgSeq}
 	</select>
+	
 	<update id="update">
 		UPDATE 
 			pilatesCodeGroup 
@@ -76,6 +80,24 @@
 			AND pilcgSeq =#{pilcgSeq }
 
 	</update>
+	<update id="updateDelete">
+		UPDATE 
+			pilatesCodeGroup 
+		SET 	
+			pilcgDelNy = 1
+		WHERE 1=1
+			AND pilcgSeq =#{pilcgSeq }
+
+	</update>
+	<delete id="delete">
+		DELETE 
+			FROM
+			pilatesCodeGroup 
+	
+		WHERE 1=1
+			AND pilcgSeq =#{pilcgSeq }
+
+	</delete>
 
 	<!-- infrCode -->
 	<sql id="selectCommonCode">
@@ -145,5 +167,18 @@
 			AND pilcdSeq=#{pilcdSeq}
 	</update>
 	
-</mapper>
 
+
+	<select id="selectListForCache" resultMap="resultMapObj">
+		SELECT
+			pilcdSeq
+			,pilcdName
+			,pilcgSeq
+			
+		FROM 
+			pilatesCode
+		WHERE 1=1
+			
+	</select>
+	
+	</mapper>

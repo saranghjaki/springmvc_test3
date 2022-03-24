@@ -5,9 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.junefw.infra.modules.code.Code;
+import com.junefw.infra.modules.code.CodeServiceImpl;
 import com.junefw.infra.modules.code.CodeVo;
 
 @Controller
@@ -36,11 +38,18 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/member/memberForm") //
-	public String memberForm(Model model) throws Exception {
-
+	public String memberForm(@ModelAttribute("vo")MemberVo vo,Model model) throws Exception {
+		if(vo.getPilmmSeq().equals("0")) {
+			
+		}else {
+			Member item = service.selectOne(vo);
+			model.addAttribute("item",item);
+		}
+		model.addAttribute("codeGender",CodeServiceImpl.selectListForCache("33"));
+		 System.out.println("cachedCodeArrayList:"+Code.cachedCodeArrayList.size()+"chached!");
 		return "member/memberForm";
 	}
-	
+	@SuppressWarnings(value= {"all"})
 	@RequestMapping(value = "/member/memberInst") 
 	public String memberInst(Model model, Member dto) throws Exception {
 		
